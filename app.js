@@ -2,12 +2,18 @@
  * Module dependencies.
  * uploaded images are stored under 'my_dir'/images/ directory which can be accessed and shared.
  */
-var my_dir = __dirname.'/upload-image/public/';
+var my_dir = __dirname+'/public/';
 
 var express = require('express'),
-    routes = require('./routes');
+    routes = require('./routes'),
+		mongoose = require('mongoose');
+
+require('./upimage');
 
 var app = module.exports = express.createServer();
+
+var Image = mongoose.model('UpImage');
+var image = new Image();
 
 // Configuration
 app.configure(function(){
@@ -35,10 +41,22 @@ app.get('/', function(req, res){
 });
 
 app.post('/api/photos', function(req, res) {
-	console.log(JSON.stringify(req.files));
+	//console.log(JSON.stringify(req.files));
+	console.log(req.files);
 	
 	var serverPath = '/images/' + req.files.userPhoto.name;
-	
+
+	image.name = req.files.userPhoto.name;
+	image.size = req.files.userPhoto.size;
+	image.type = req.files.userPhoto.type;
+	image.modifed = req.files.userPhoto.lastModifiedDate;
+
+	image.save(function(err, res) {
+		if(err) { throw err; }
+		console.log(res);
+	});
+
+
 	require('fs').rename(
 		req.files.userPhoto.path,
 		my_dir + serverPath,
@@ -54,6 +72,12 @@ app.post('/api/photos', function(req, res) {
 			});
 		}
 	);	
+
+	Image.find({}, function(err, docs) {
+		console.log(docs);
+		mongoose.disconnect();
+	});
+
 });
 
 app.listen(3000, function(){

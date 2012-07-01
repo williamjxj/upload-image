@@ -1,9 +1,15 @@
 {
-    "name": "application-name"
-  , "version": "0.0.1"
+    "name": "upload-images"
+  , "description": "Node Practical Test - William Jiang - upload Image from URL"
+  , "version": "1.0.0"
   , "private": true
   , "dependencies": {
-      "express": "2.5.8"
-    , "jade": ">= 0.0.1"
+      "express": ">=2.5.8",
+      "mongodb": ">=1.0.2",
+      "mongoose": ">=2.6.5",
+      "node-proxy": ">=0.6.0",
+      "socket.io": ">=0.9.6",
+      "now":       ">=0.8.1",
+      "request":  ">=2.9.203"
   }
 }
