@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Node Practical Test - William Jiang - upload Image from local machine</title>
+<link rel="stylesheet" type="text/css" href="stylesheets/style.css" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script src="http://malsup.github.com/jquery.form.js"></script>
+<script src="/nowjs/now.js"></script>
+<script>
+$(document).ready(function() {
+
+	// status('Choose a image file:)');
+	now.receiveMessage = function(message){
+		$(message).addClass('img_space').appendTo('div.display');
+		//$(message).appendTo($('body')).wrap("<span/>");
+	}
+	
+	$('#uploadForm').submit(function() {
+		//status('Uploading the image file ...');
+		
+		$(this).ajaxSubmit({
+		
+			error: function(xhr) {
+				status('Error: ' + xhr.status);
+			},
+		
+			success: function(response) {
+		
+				if(response.error) {
+					status('Opps, something bad happened');
+					return;
+				}
+		
+				var imageUrlOnServer = response.path;
+		
+				//status('Success, file uploaded to:' + imageUrlOnServer);
+
+				// var img = $('<img/>').attr({'src':imageUrlOnServer, 'title':imageUrlOnServer.replace(/.*\//, '')});
+				// $(img).appendTo($('body')).wrap("<span/>");
+				var img = '<img src="'+imageUrlOnServer+'" title="'+imageUrlOnServer.replace(/.*\//, '')+'" />';
+
+				// fresh all online pages.
+				now.distributeMessage(img);
+			
+			}
+		});	
+		// Have to stop the form from submitting and causing a page refresh - don't forget this
+		return false;
+	});
+	
+	function status(message) {
+		$('#status').text(message);
+	}
+	
+	$('#userPhotoInput').change(function(e) {
+		e.preventDefault();
+		$('#uploadForm').submit();
+		return false;
+	});
+});
+</script>
+</head>
+<body>
+<div class="box">
+  <h2>Image Stream</h2>
+  <hr />
+  <p>In the field, input the full URL to your image. You can use the 'Post Image' button to upload it.</p>
+  <div class="main">
+    <form id="uploadForm"
+          enctype="multipart/form-data"
+          action="/api/photos"
+          method="post">
+      <input type="file" id="userPhotoInput" name="userPhoto" size="50" />
+    </form>
+    <div id="status" />
+    <div class="display"></div>
+  </div>
+</div>
+</body>
+</html>

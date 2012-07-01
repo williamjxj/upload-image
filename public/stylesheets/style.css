@@ -1,0 +1,32 @@
+body {
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-color: #DFE8EC;
+}
+a {
+  color: #00B7FF;
+}
+div.box {
+	background: #fff;
+	margin: 20px auto;
+	padding: 20px;
+	width: 800px;
+	height: 450px;
+	text-align: left;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+	border-radius: 10px;
+	border-bottom: 3px solid #85929A;
+}
+div.main {
+	margin: 60px auto;
+	text-align:center;
+}
+div.display {
+	margin: 20px;
+}
+img.img_space {
+	padding: 20px;
+	margin: 20px;
+	vertical-align: middle;
+}
