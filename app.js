@@ -2,7 +2,7 @@
  * Module dependencies.
  * uploaded images are stored under 'my_dir'/images/ directory which can be accessed and shared.
  */
-var my_dir = 'C:/Users/ingrid/node_modules/test/upload-app/public/';
+var my_dir = __dirname.'/upload-app/public/';
 
 var express = require('express'),
     routes = require('./routes');
