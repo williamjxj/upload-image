@@ -46,7 +46,8 @@ app.post('/api/photos', function(req, res) {
 	
 	var serverPath = '/images/' + req.files.userPhoto.name;
 
-	image.name = req.files.userPhoto.name;
+	//image.name = req.files.userPhoto.name;
+	image.name = serverPath;
 	image.size = req.files.userPhoto.size;
 	image.type = req.files.userPhoto.type;
 	image.modifed = req.files.userPhoto.lastModifiedDate;
