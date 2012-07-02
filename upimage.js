@@ -24,7 +24,7 @@ FileSchema.pre('save', function(next) {
 	next();
 });
 
-var UpImage = mongoose.model('UpImage', FileSchema);
+var YouAdWorld = mongoose.model('YouAdWorld', FileSchema);
 
 exports.FileSchema = FileSchema;
 

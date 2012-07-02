@@ -1,0 +1,54 @@
+#pictures {
+	width: 800px;
+	margin: 10px auto 10px auto;
+	padding: 0 60px 10px 60px;
+	border: solid 1px #cbcbcb;
+	background: #fafafa;
+	-moz-box-shadow: 0px 0px 10px #cbcbcb;
+	-webkit-box-shadow: 0px 0px 10px #cbcbcb;
+}
+
+#pictures h1 {
+	margin: 30px 0 15px 0;
+	font-size: 30px;
+	font-weight: bold;
+	font-family: Arial;
+}
+
+#pictures h1 span {
+	font-size: 50%;
+	letter-spacing: -0.05em;
+}
+
+#pictures hr {
+	border: none;
+	height: 1px; line-height: 1px;
+	background: #E5E5E5;
+	margin-bottom: 20px;
+	padding: 0;
+}
+
+#pictures p {
+	margin: 0;
+	padding: 7px 0;
+}
+
+#pictures a {
+	outline: none;
+}
+
+#pictures a img {
+	border: 1px solid #BBB;
+	padding: 2px;
+	margin: 10px 20px 10px 0;
+	vertical-align: top;
+}
+
+#pictures a img.last {
+	margin-right: 0;	
+}
+
+#pictures ul {
+	margin-bottom: 24px;
+	padding-left: 30px;
+}

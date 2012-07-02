@@ -12,7 +12,7 @@ require('./upimage');
 
 var app = module.exports = express.createServer();
 
-var Image = mongoose.model('UpImage');
+var Image = mongoose.model('YouAdWorld');
 var image = new Image();
 
 // Configuration
@@ -75,10 +75,44 @@ app.post('/api/photos', function(req, res) {
 
 	Image.find({}, function(err, docs) {
 		console.log(docs);
-		mongoose.disconnect();
 	});
-
 });
+
+
+app.get('/list', function(req, res){
+  var query = Image.find({});
+	query.sort('date', 'descending');
+	query.exec(function(err, docs) {
+		if(err) {
+			throw err;
+		}
+	  console.log(docs);
+		res.render('list', {
+			layout: false,
+			locals: {
+				files: docs
+			}
+		})
+	});
+});
+
+app.get('/deletephoto/:id', function(req, res) {
+
+	Image.findById(req.params.id, function(err, img) {
+		console.log(img);
+		img.remove(function(err) {
+			if(!err) {
+				console.log("removed");
+				res.redirect('/list');
+			}
+			else {
+				throw err;
+			}
+		});
+	});
+});
+
+
 
 app.listen(3000, function(){
 	console.log("Express server listening on port %d in %s mode", app.address().port, app.settings.env);
